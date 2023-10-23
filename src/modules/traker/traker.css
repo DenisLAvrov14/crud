@@ -1,0 +1,48 @@
+/* Стили для контейнера списка */
+.list {
+  background-color: transparent;
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Установка направления flex-контейнера на вертикальное */
+  align-items: center; /* Выравнивание по центру по вертикали */
+}
+
+.traker ul {
+  list-style: none;
+}
+
+.traker li {
+  padding: 10px;
+  margin-right: 1px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-container {
+  background-color: aliceblue;
+  width: 408px;
+  height: 31px;
+  margin-right: 3px;
+}
+
+.traker li button {
+  background-color: red;
+  height: 31px;
+  width: 34px;
+  color: whitesmoke;
+  border: 1px solid;
+  border-radius: 2px;
+  border-color: antiquewhite;
+  margin-right: 3px;
+  /* margin-top: 1px; Добавленный отступ сверху */
+  padding-top: 4px;
+  padding-left: 7px;
+  padding-right: 8px;
+  padding-bottom: 2px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.traker li button:hover {
+  background-color: darkred;
+}

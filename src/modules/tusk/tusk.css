@@ -1,0 +1,54 @@
+.tusker {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+h2 {
+  color: antiquewhite;
+  margin-bottom: 10px;
+}
+
+.addtsk {
+  display: flex;
+  flex-direction: row;
+}
+
+input {
+  height: 28.5px;
+  width: 400px;
+  margin-right: 20px;
+  border: 1px solid;
+  border-radius: 2px;
+  margin-right: 2px;
+}
+
+.addbtn {
+  background-color: red;
+  height: 32px;
+  width: 34px;
+  color: whitesmoke;
+  border: 1px solid;
+  border-radius: 2px;
+  border-color: antiquewhite;
+  margin-right: 5px;
+  /* margin-top: 1px; Добавленный отступ сверху */
+  padding-top: 1px;
+  padding-left: 7px;
+  padding-bottom: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: darkred;
+}
