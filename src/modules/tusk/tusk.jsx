@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { BiSolidPlusCircle } from "react-icons/bi";
 import "./tusk.css";
 
-const Tusker = ({ addTask, tasks, markTaskAsDone, deleteTask }) => {
-  const [task, setTask] = useState("");
+const Tusker = ({ addTask, setFilter }) => {
+  const [task, setTask] = React.useState("");
 
   const handleInputChange = (e) => {
     setTask(e.target.value);
@@ -11,9 +11,13 @@ const Tusker = ({ addTask, tasks, markTaskAsDone, deleteTask }) => {
 
   const handleAddTask = () => {
     if (task.trim() !== "") {
-      addTask(task);
+      addTask({ task: task, undone: true });
       setTask("");
     }
+  };
+
+  const handleFilterChange = (e) => {
+    setFilter(e.target.value); // Функция изменения фильтра
   };
 
   return (
@@ -25,6 +29,11 @@ const Tusker = ({ addTask, tasks, markTaskAsDone, deleteTask }) => {
           <button className="addbtn" onClick={handleAddTask}>
             <BiSolidPlusCircle className="icon" />
           </button>
+          <select onChange={handleFilterChange}>
+            <option value="all">All</option>
+            <option value="done">Done</option>
+            <option value="undone">Undone</option>
+          </select>
         </div>
       </div>
     </>

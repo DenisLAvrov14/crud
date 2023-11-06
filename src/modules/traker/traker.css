@@ -23,6 +23,12 @@
   width: 408px;
   height: 31px;
   margin-right: 3px;
+  cursor: pointer;
+}
+
+.task-container.done {
+  text-decoration: line-through;
+  color: grey; /* Цвет выполненной задачи */
 }
 
 .traker li button {

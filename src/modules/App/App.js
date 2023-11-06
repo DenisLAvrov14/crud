@@ -1,42 +1,70 @@
-import "./App.css";
+// import "./App.css";
+// import React, { useState } from "react";
+// import Tusker from "../tusk/tusk";
+// import Tracker from "../traker/traker";
+
+// function App() {
+//   const [tasks, setTasks] = useState([]); // Состояние для задач
+//   const [filter, setFilter] = useState("all"); // Состояние для фильтра
+
+//   const addTask = (task) => {
+//     setTasks([...tasks, task]);
+//   };
+
+//   const markTaskAsDone = (updatedTasks) => {
+//     setTasks(updatedTasks);
+//   };
+
+//   const deleteTask = (index) => {
+//     const updatedTasks = tasks.filter((_, i) => i !== index);
+//     setTasks(updatedTasks);
+//   };
+
+//   return (
+//     <div>
+//       <Tusker addTask={addTask} setFilter={setFilter} />
+//       <Tracker
+//         tasks={tasks}
+//         markTaskAsDone={markTaskAsDone}
+//         deleteTask={deleteTask}
+//         filter={filter} // Передача фильтра в компонент Tracker
+//       />
+//     </div>
+//   );
+// }
+
+// export default App;
+
+// App.jsx
 import React, { useState } from "react";
 import Tusker from "../tusk/tusk";
 import Tracker from "../traker/traker";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([]); // Состояние для задач
+  const [filter, setFilter] = useState("all"); // Состояние для фильтра
 
   const addTask = (task) => {
     setTasks([...tasks, task]);
   };
 
-  const markTaskAsDone = (index) => {
-    // Можно обновить задачу, пометив её как выполненную
-    // и здесь же удалить задачу, если это необходимо
-    // Например:
-    // const updatedTasks = [...tasks];
-    // updatedTasks[index] = '✓ ' + updatedTasks[index];
-    // setTasks(updatedTasks);
+  const markTaskAsDone = (updatedTasks) => {
+    setTasks(updatedTasks);
   };
 
   const deleteTask = (index) => {
-    // Удалить задачу по индексу
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
   };
 
   return (
-    <div className="App">
-      <Tusker
-        addTask={addTask}
-        tasks={tasks}
-        markTaskAsDone={markTaskAsDone}
-        deleteTask={deleteTask}
-      />
+    <div>
+      <Tusker addTask={addTask} setFilter={setFilter} />
       <Tracker
         tasks={tasks}
         markTaskAsDone={markTaskAsDone}
         deleteTask={deleteTask}
+        filter={filter} // Передача фильтра в компонент Tracker
       />
     </div>
   );
