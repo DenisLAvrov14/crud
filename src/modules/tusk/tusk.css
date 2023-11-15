@@ -16,6 +16,7 @@ h2 {
 .addtsk {
   display: flex;
   flex-direction: row;
+  justify-content: center; /* Центрирование по горизонтали */
 }
 
 input {
@@ -51,4 +52,8 @@ input {
 
 button:hover {
   background-color: darkred;
+}
+
+select {
+  margin-right: -30px;
 }

@@ -15,7 +15,7 @@
   padding: 10px;
   margin-right: 1px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Центрирование по горизонтали */
 }
 
 .task-container {
