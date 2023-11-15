@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { BiSolidHappyBeaming, BiSolidTrash } from "react-icons/bi";
+import {
+  BiSolidHappyBeaming,
+  BiSolidTrash,
+  BiTask,
+  BiTaskX,
+  BiEditAlt,
+} from "react-icons/bi";
 import "./traker.css";
 
 const Tracker = ({ tasks, markTaskAsDone, deleteTask, filter }) => {
@@ -70,11 +76,24 @@ const Tracker = ({ tasks, markTaskAsDone, deleteTask, filter }) => {
               <button onClick={() => deleteTask(index)}>
                 <BiSolidTrash className="icon" />
               </button>
-              <button onClick={() => setEditedTask({ task: task.task, index })}>
-                Edit
-              </button>
+              {index !== editedTask.index && (
+                <button
+                  onClick={() => setEditedTask({ task: task.task, index })}
+                >
+                  <BiEditAlt className="icon" />
+                </button>
+              )}
               {index === editedTask.index && (
-                <button onClick={handleTaskUpdate}>Save</button>
+                <>
+                  <button onClick={handleTaskUpdate}>
+                    <BiTask className="icon" />
+                  </button>
+                  <button
+                    onClick={() => setEditedTask({ task: "", index: -1 })}
+                  >
+                    <BiTaskX className="icon" />
+                  </button>
+                </>
               )}
             </div>
           </li>

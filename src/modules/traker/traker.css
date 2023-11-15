@@ -7,11 +7,11 @@
   align-items: center; /* Выравнивание по центру по вертикали */
 }
 
-.traker ul {
+.tracker ul {
   list-style: none;
 }
 
-.traker li {
+.tracker li {
   padding: 10px;
   margin-right: 1px;
   display: flex;
@@ -31,7 +31,7 @@
   color: grey; /* Цвет выполненной задачи */
 }
 
-.traker li button {
+.tracker li button {
   background-color: red;
   height: 31px;
   width: 34px;
@@ -49,6 +49,6 @@
   align-items: center;
 }
 
-.traker li button:hover {
+.tracker li button:hover {
   background-color: darkred;
 }
