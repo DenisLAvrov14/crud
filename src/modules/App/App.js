@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Tusker from "../tusk/tusk";
+import Tasker from "../task/task";
 import Tracker from "../traker/traker";
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div>
-      <Tusker addTask={addTask} setFilter={setFilter} />
+      <Tasker addTask={addTask} setFilter={setFilter} />
       <Tracker
         tasks={tasks}
         markTaskAsDone={markTaskAsDone}

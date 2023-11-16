@@ -9,37 +9,37 @@ import {
 import "./traker.css";
 
 const Tracker = ({ tasks, markTaskAsDone, deleteTask, filter }) => {
-  const [editedTask, setEditedTask] = useState({ task: "", index: -1 });
+  const [editedTask, setEditedTask] = useState({ onTask: "", index: -1 });
 
   const markAsDone = (index) => {
-    const updatedTasks = tasks.map((task, i) => {
-      if (i === index && typeof task === "object") {
-        const newTask = { ...task, undone: !task.undone };
+    const updatedTasks = tasks.map((onTask, i) => {
+      if (i === index && typeof onTask === "object") {
+        const newTask = { ...onTask, undone: !onTask.undone };
         return newTask;
       }
-      return task;
+      return onTask;
     });
     markTaskAsDone(updatedTasks);
   };
 
   const handleTaskUpdate = () => {
     if (editedTask.index !== -1) {
-      const updatedTasks = tasks.map((task, i) => {
+      const updatedTasks = tasks.map((onTask, i) => {
         if (i === editedTask.index) {
-          return { ...task, task: editedTask.task };
+          return { ...onTask, onTask: editedTask.onTask };
         }
-        return task;
+        return onTask;
       });
       markTaskAsDone(updatedTasks);
-      setEditedTask({ task: "", index: -1 });
+      setEditedTask({ onTask: "", index: -1 });
     }
   };
 
-  const filteredTasks = tasks.filter((task) => {
+  const filteredTasks = tasks.filter((onTask) => {
     if (filter === "done") {
-      return typeof task === "object" ? !task.undone : false;
+      return typeof onTask === "object" ? !onTask.undone : false;
     } else if (filter === "undone") {
-      return typeof task === "object" ? task.undone : false;
+      return typeof onTask === "object" ? onTask.undone : false;
     }
     return true;
   });
@@ -48,25 +48,25 @@ const Tracker = ({ tasks, markTaskAsDone, deleteTask, filter }) => {
     <div className="list">
       <h2>List</h2>
       <ul className="tracker">
-        {filteredTasks.map((task, index) => (
+        {filteredTasks.map((onTask, index) => (
           <li key={index}>
             <div
               className={`task-container ${
-                typeof task === "object" && task.undone ? "undone" : "done"
+                typeof onTask === "object" && onTask.undone ? "undone" : "done"
               }`}
             >
               {index === editedTask.index ? (
                 <input
                   type="text"
-                  value={editedTask.task}
+                  value={editedTask.onTask}
                   onChange={(e) =>
-                    setEditedTask({ task: e.target.value, index })
+                    setEditedTask({ onTask: e.target.value, index })
                   }
                 />
-              ) : typeof task === "object" ? (
-                task.task
+              ) : typeof onTask === "object" ? (
+                onTask.onTask
               ) : (
-                task
+                onTask
               )}
             </div>
             <div className="buttons">
@@ -78,7 +78,9 @@ const Tracker = ({ tasks, markTaskAsDone, deleteTask, filter }) => {
               </button>
               {index !== editedTask.index && (
                 <button
-                  onClick={() => setEditedTask({ task: task.task, index })}
+                  onClick={() =>
+                    setEditedTask({ onTask: onTask.onTask, index })
+                  }
                 >
                   <BiEditAlt className="icon" />
                 </button>
@@ -89,7 +91,7 @@ const Tracker = ({ tasks, markTaskAsDone, deleteTask, filter }) => {
                     <BiTask className="icon" />
                   </button>
                   <button
-                    onClick={() => setEditedTask({ task: "", index: -1 })}
+                    onClick={() => setEditedTask({ onTask: "", index: -1 })}
                   >
                     <BiTaskX className="icon" />
                   </button>
