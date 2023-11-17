@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Tasker from "../task/task";
-import Tracker from "../traker/traker";
+import Tracker from "../traсker/traсker";
 
 function App() {
   const [tasks, setTasks] = useState([]); // Состояние для задач
@@ -14,13 +14,23 @@ function App() {
     setTasks(updatedTasks);
   };
 
-  const deleteTask = (index) => {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
+  const deleteTask = (updatedTasks) => {
     setTasks(updatedTasks);
   };
 
   const updateTask = (updatedTasks) => {
     setTasks(updatedTasks);
+  };
+
+  const handleDeleteTask = (taskId) => {
+    console.log("Deleting task with ID:", taskId);
+    const updatedTasks = tasks.filter((onTask) => onTask.id !== taskId);
+    deleteTask(updatedTasks);
+  };
+
+  const handleDeleteTasks = (taskIds) => {
+    const updatedTasks = tasks.filter((onTask) => !taskIds.includes(onTask.id));
+    deleteTask(updatedTasks);
   };
 
   return (
@@ -31,7 +41,8 @@ function App() {
         markTaskAsDone={markTaskAsDone}
         deleteTask={deleteTask}
         filter={filter}
-        updateTask={updateTask} // Передача функции updateTask в компонент Tracker
+        updateTask={updateTask}
+        deleteTasks={handleDeleteTasks} // Передача функции handleDeleteTasks в компонент Tracker
       />
     </div>
   );

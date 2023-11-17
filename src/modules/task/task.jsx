@@ -1,5 +1,6 @@
 import React from "react";
 import { BiSolidPlusCircle } from "react-icons/bi";
+import { v4 as uuidv4 } from "uuid"; // Импорт функции генерации уникальных идентификаторов
 import "./task.css";
 
 const Tasker = ({ addTask, setFilter }) => {
@@ -11,13 +12,18 @@ const Tasker = ({ addTask, setFilter }) => {
 
   const handleOnAddTask = () => {
     if (onTask.trim() !== "") {
-      addTask({ onTask: onTask, undone: true });
+      const newTask = {
+        id: uuidv4(), // Генерация уникального идентификатора
+        onTask: onTask,
+        undone: true,
+      };
+      addTask(newTask);
       setOnTask("");
     }
   };
 
   const handleOnFilterChange = (e) => {
-    setFilter(e.target.value); // Функция изменения фильтра
+    setFilter(e.target.value);
   };
 
   return (

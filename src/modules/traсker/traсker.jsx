@@ -6,14 +6,24 @@ import {
   BiTaskX,
   BiEditAlt,
 } from "react-icons/bi";
-import "./traker.css";
+import "./traсker.css";
 
-const Tracker = ({ tasks, markTaskAsDone, deleteTask, filter }) => {
-  const [editedTask, setEditedTask] = useState({ onTask: "", index: -1 });
+const Tracker = ({
+  tasks,
+  markTaskAsDone,
+  deleteTask,
+  filter,
+  deleteTasks,
+}) => {
+  const [editedTask, setEditedTask] = useState({
+    onTask: "",
+    id: "",
+    index: -1,
+  });
 
-  const markAsDone = (index) => {
-    const updatedTasks = tasks.map((onTask, i) => {
-      if (i === index && typeof onTask === "object") {
+  const markAsDone = (taskId) => {
+    const updatedTasks = tasks.map((onTask) => {
+      if (onTask.id === taskId && typeof onTask === "object") {
         const newTask = { ...onTask, undone: !onTask.undone };
         return newTask;
       }
@@ -24,16 +34,27 @@ const Tracker = ({ tasks, markTaskAsDone, deleteTask, filter }) => {
 
   const handleTaskUpdate = () => {
     if (editedTask.index !== -1) {
-      const updatedTasks = tasks.map((onTask, i) => {
-        if (i === editedTask.index) {
+      const updatedTasks = tasks.map((onTask) => {
+        if (onTask.id === editedTask.id) {
           return { ...onTask, onTask: editedTask.onTask };
         }
         return onTask;
       });
       markTaskAsDone(updatedTasks);
-      setEditedTask({ onTask: "", index: -1 });
+      setEditedTask({ onTask: "", id: "", index: -1 });
     }
   };
+
+  const handleDeleteTask = (taskId) => {
+    console.log("Deleting task with ID:", taskId);
+    const updatedTasks = tasks.filter((onTask) => onTask.id !== taskId);
+    deleteTask(updatedTasks);
+  };
+
+  // const handleDeleteTasks = (taskIds) => {
+  //   const updatedTasks = tasks.filter((onTask) => !taskIds.includes(onTask.id));
+  //   deleteTasks(updatedTasks);
+  // };
 
   const filteredTasks = tasks.filter((onTask) => {
     if (filter === "done") {
@@ -60,7 +81,11 @@ const Tracker = ({ tasks, markTaskAsDone, deleteTask, filter }) => {
                   type="text"
                   value={editedTask.onTask}
                   onChange={(e) =>
-                    setEditedTask({ onTask: e.target.value, index })
+                    setEditedTask({
+                      onTask: e.target.value,
+                      id: editedTask.id,
+                      index,
+                    })
                   }
                 />
               ) : typeof onTask === "object" ? (
@@ -70,16 +95,20 @@ const Tracker = ({ tasks, markTaskAsDone, deleteTask, filter }) => {
               )}
             </div>
             <div className="buttons">
-              <button onClick={() => markAsDone(index)}>
+              <button onClick={() => markAsDone(onTask.id)}>
                 <BiSolidHappyBeaming className="icon" />
               </button>
-              <button onClick={() => deleteTask(index)}>
+              <button onClick={() => handleDeleteTask(onTask.id)}>
                 <BiSolidTrash className="icon" />
               </button>
               {index !== editedTask.index && (
                 <button
                   onClick={() =>
-                    setEditedTask({ onTask: onTask.onTask, index })
+                    setEditedTask({
+                      onTask: onTask.onTask,
+                      id: onTask.id,
+                      index,
+                    })
                   }
                 >
                   <BiEditAlt className="icon" />
@@ -91,7 +120,9 @@ const Tracker = ({ tasks, markTaskAsDone, deleteTask, filter }) => {
                     <BiTask className="icon" />
                   </button>
                   <button
-                    onClick={() => setEditedTask({ onTask: "", index: -1 })}
+                    onClick={() =>
+                      setEditedTask({ onTask: "", id: "", index: -1 })
+                    }
                   >
                     <BiTaskX className="icon" />
                   </button>
